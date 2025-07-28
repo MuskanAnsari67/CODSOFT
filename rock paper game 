@@ -1,6 +1,6 @@
 import random
 
-# let’s play Rock, Paper, Scissors!
+# let’s play Rock, Paper, scissors!
 def computer_turn():
     options = ["rock", "paper", "scissors"]
     return random.choice(options)
