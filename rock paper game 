@@ -1,0 +1,53 @@
+import random
+
+# Let’s play Rock, Paper, Scissors!
+def computer_turn():
+    options = ["rock", "paper", "scissors"]
+    return random.choice(options)
+
+def decide_winner(player, comp):
+    if player == comp:
+        return "draw"
+    elif (player == "rock" and comp == "scissors") or \
+         (player == "scissors" and comp == "paper") or \
+         (player == "paper" and comp == "rock"):
+        return "player"
+    else:
+        return "computer"
+
+def start_game():
+    user_points = 0
+    comp_points = 0
+    print("Ready to test your luck? Let's play Rock, Paper, Scissors!")
+
+    while True:
+        print("\nType your pick (rock / paper / scissors):")
+        user_choice = input(">> ").strip().lower()
+
+        if user_choice not in ["rock", "paper", "scissors"]:
+            print("Umm... that’s not a valid move. Try again.")
+            continue
+
+        comp_choice = computer_turn()
+        print(f"Computer picks: {comp_choice}")
+
+        outcome = decide_winner(user_choice, comp_choice)
+
+        if outcome == "draw":
+            print("It's a tie! Great minds think alike.")
+        elif outcome == "player":
+            print("You nailed it! This round is yours.")
+            user_points += 1
+        else:
+            print("Oops! Computer wins this one.")
+            comp_points += 1
+
+        print(f"Scoreboard => You: {user_points} | Computer: {comp_points}")
+
+        again = input("Wanna go another round? (yes/no): ").strip().lower()
+        if again != "yes":
+            print("Game over! Hope you had fun.")
+            break
+
+if __name__ == "__main__":
+    start_game()
